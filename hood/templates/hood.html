@@ -59,4 +59,71 @@
         </div>
         <!-- Card -->
     </div>
+    
+    <div class="col-md-8">
+
+
+        <h2 class="black-text text-center animated fadeInRight" data-wow-delay="500s">Businesses</h2>
+        <div class="row">
+                {% for business in businesses %}
+            <div class="col-md-6">
+           <div class="card">
+                    <!-- Card header -->
+                    <div>
+                        <h4 class="pink-text pull-left card-title"> {{business.business}}
+                            <hr class="bg-danger">
+                        </h4>
+                    </div>
+                    <!-- Card content -->
+                    <div class="card-body">
+                        <p class="card-text">{{business.description}}</p>
+                        <p> Owner :{{business.owner}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="black-text">
+                            Email : {{business.business_email}}
+                        </p>
+                    </div>
+                </div>
+                {% empty %}
+                <p>There are no businesses here.<a href="" data-toggle="modal" data-target="#BusinessForm">Add One</a>
+                </p>
+           
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+    <div class="modal fade" id="BusinessForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add Post</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="form animated slideInDown">
+                    <form action="/hood/{{location.name}}" method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form business_form %}
+                        <button class="btn btn-outline-info modal-footer d-flex justify-content-center"
+                            type="submit">Submit </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
 
