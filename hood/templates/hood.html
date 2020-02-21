@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+    .main {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<div class="row" style="margin:10px;">
+    <div class="col-md-4">
+        <div class="card">
+            <!-- Card image -->
+            <div class="view overlay">
+                <img class="card-img-top" src="{{location.image.url}}" alt="Card image cap" height="200px"
+                    width="200px">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <!-- Card content -->
+            <div class="card-body">
