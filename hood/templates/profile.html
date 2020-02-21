@@ -26,3 +26,31 @@
                 </div>
         </div>
     <hr>
+    <div class="col-md-8">
+        <h4>Businesses Created</h4>
+        <div class="row">
+            {% for business in businesses %}
+            <div class="col-md-4">
+                <div class="card animated slideInDown">
+                    <div>
+                        <h4 class="card-title">{{business.business}}</h4>
+                    </div>
+                    <div class="card-content">
+                        {{business.description}}
+                    </div>
+                </div>
+
+            </div>
+            {%  empty %}
+            <h2> No Business Created Yet</h2> <br>
+                        
+                                <div class="modal fade" id="BusinessForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <h4 class="modal-title w-100 font-weight-bold">Add Business</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
