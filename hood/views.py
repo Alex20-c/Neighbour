@@ -57,3 +57,43 @@ def single_hood(request,location):
     
     
     return render(request,'hood.html',context)
+    
+@login_required(login_url='/accounts/login/')
+def profile(request,username):
+    profile = User.objects.get(username=username)
+    
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+    businesses = Business.get_profile_businesses(profile.id)
+   
+   
+    business_form = BusinessForm(request.POST)
+    if request.method == 'POST':
+        if business_form.is_valid():
+            business = business_form.save(commit=False)
+            business.user = request.user
+            business.location = location
+            business.save()
+        return redirect('single_hood',location)
+    
+    else:
+        business_form = BusinessForm()
+    
+    return render(request, 'profile.html',{"profile":profile,"profile_details":profile_details,"businesses":businesses, 'business_form':business_form,}) 
+    
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'business' in request.GET and request.GET['business']:
+        search_term = request.GET.get("business")
+        searched_businesses = Business.search_by_business(search_term)
+        
+        message = f'{search_term}'
+        
+        return render(request,'search.html',{"message":message,"businesses":searched_businesses})
+    
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message,"businesses":searched_businesses})
