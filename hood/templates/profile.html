@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="container" style="margin-top:10px;">
+    <div class="row">
+        <div class="col-md-4">
+                <div class="profile-image">
+     <img src="{{profile_details.profile_photo.url}}" alt="profile-photo" width="150" height="150" style="margin-top:10px;">
+    <h4 class=" text-center"><strong>{{ profile.username }}</strong></h4>
+                </div>
+                <div >
+    {% if profile.username == user.username %}
+<li class="list-inline-item">
+
+                    </li>
+                    {% else %}
+                   
+                    {% endif %}
+                    </ul>
+                    {% if profile.username == user.username %}
+
+
+                    {% endif %}
+                </div>
+        </div>
+    <hr>
