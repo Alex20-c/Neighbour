@@ -27,3 +27,21 @@ class ProfileTestClass(TestCase):
         self.assertTrue(len(profiles)>0)
         
 
+class BusinessTestClass(TestCase):
+    def setUp(self):
+        self.john = Profile(first_name = 'Wanjiku',last_name='Kariuki',username='ciku_k',email='sheekokariuki@gmail.com')
+        self.john.save_profile()
+
+        self.business = Business(name='Kuku Shop',email='kukushop@roasters.com',location = 'Roasters',user = self.wanjiku)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.business,Business))
+
+    def test_save(self):
+        self.business.save_business()
+        business = Business.objects.all()
+        self.assertTrue(len(profiles)>0)
+
+    def tearDown(self):
+        Profile.objects.all.delete()
+        Business.objects.all().delete()
