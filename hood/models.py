@@ -92,3 +92,36 @@ class Business(models.Model):
     
     def __str__(self):
         return self.owner
+        
+class Posts(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=200) 
+    location = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    
+    def save_post(self):
+        self.save()
+    
+    @classmethod
+    def get_location_posts(cls,location):
+        posts =Posts.objects.filter(location__pk=location)
+        print(posts)
+        return posts
+    
+    
+    def __str__(self):
+        return self.title
+    
+class Contacts(models.Model):
+    name = models.CharField(max_length=200)
+    number = models.IntegerField()
+    location = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    
+    @classmethod
+    def get_location_contacts(cls,location):
+        contacts = Contacts.objects.filter(location__pk=location)
+        return contacts
+    
+    def __str__(self):
+        return self.name
