@@ -1,0 +1,36 @@
+{% extends 'registration/base.html' %}  
+{% load bootstrap4 %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4" id="form" style="color:black;
+    font-family: sans-serif;margin-top: 20px;opacity:0.9;" >
+        <h2 style="border-bottom:6px solid #4DD0E1;margin-bottom: 10px;padding: 10px;">Log In</h2>
+        <form action="/accounts/login/" method="POST" style="color:#757575;" class="login-box">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-info btn-rounded waves-effect text-center" value="Log In"
+                    style="text-align:center;">
+            </div>
+            <input type="hidden" name="next" value="/">
+        </form>
+        <div class="panel panel-default text-center">
+            <hr>
+            <h6 class="text-center  white-text text-muted">Don't have an account?</h6>
+            <a href="/accounts/register" class="btn btn-blue btn-md text-center sm">Sign Up Here</a>
+
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock %}
