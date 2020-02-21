@@ -1,0 +1,42 @@
+<!--Navbar -->
+<nav class=" navbar navbar-expand-md navbar-light blue-text" style="color:white;">
+    <div class="navbar-brand" style="background:#000000;opacity:0.85;padding:10px;color:white;">
+      <a href="{% url 'index' %}" style="color:white;"><h4 ><i class="fas fa-home"></i>  NEIGHBOURHOOD</h4></a>
+    </div>
+    <div class="nav-search">
+        <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search Business" aria-label="Search "
+            name="business">
+        </form> 
+      </div> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+      aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="/admin"  >
+                  <i class="fas fa-plus"></i></i>Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' username=user %}">
+                    <i class="fas fa-user"></i>Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout/">
+                    Log Out <i class="far fa-sign-out"></i></a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="accounts/login">
+                      <i class="fas fa-sign-in-alt"></i></i> Login/Register
+                    </a>
+                  </li>
+            {% endif %}
+       
+      </ul>
+    </div>
+  </nav>
